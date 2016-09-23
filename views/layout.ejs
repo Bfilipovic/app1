@@ -35,9 +35,14 @@
   </head>
   <body>
     <a href="/"> main </a> |
+    <% if(session.authenticated){ %>
     <a href="/user"> users </a>|
-    <a href="/user/new"> register </a> |
+    <a href="/session/destroy" style="color: red; border:1px solid "> <b> sign out </b> </a> |
+    <% } else { %>
+       <a href="/user/new"> register </a> |
+       <a href="/session/destroy" style="color: green; border:1px solid "> <b> sign in </b> </a> |
 
+       <% } %>
     </main>
     <%- body %>
 

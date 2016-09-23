@@ -5,6 +5,10 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
+
+var bcrypt = require('bcrypt-nodejs');
+
+
 module.exports = {
   schema : true,
   attributes: {
@@ -16,7 +20,18 @@ module.exports = {
         maxLength: 20
       },
 
-      title: {
+      userName: {
+        type:'string',
+        required:true,
+        minLength: 1,
+        maxLength: 20
+      },
+
+      gender: {
+        type:'string', enum: ['male', 'female', 'other']
+      },
+
+      age: {
         type:'string'
       },
 
@@ -26,6 +41,11 @@ module.exports = {
         required:true
       },
 
+      isAdmin: {
+        type: 'boolean',
+        defaultsTo: false
+      }
+
       encryptedPassword: {
         type:'string'
       },
@@ -33,23 +53,23 @@ module.exports = {
         var obj = this.toObject();
         delete obj.password;
         delete obj.confirm;
-        delete obj.encryptedPassword;
+        delete  obj.encryptedPassword;
         delete obj._csrf;
         return obj;
-      },
-
-      beforeCreate: function(values, next) {
-        if(!values.password || values.password != values.confirm)
-        {
-          return next({err: ["password and confirmation don't match"]});
-        }
-
-        require('bcryptjs').hash(values.password, 10, function passwordEncrypted(err,encryptedPassword){
-          if(err) return next(err);
-          values.encryptedPassword = encryptedPassword;
-          //values.online= true;
-          next();
-        });
       }
-  }
+  },
+
+  beforeCreate : function(user, next) {
+    console.log('beforeCreate');
+    bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(user.password, salt, null, function(err, hash) {
+        if(err)
+          console.log(err);
+        else
+          user.encryptedPassword = hash;
+        next();
+    })
+  });
+}
+
 };

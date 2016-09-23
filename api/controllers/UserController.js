@@ -27,6 +27,8 @@ module.exports = {
 		}
 
 			//res.json(user);
+			req.session.authenticated = true;
+			req.session.User = user;
 			res.redirect('/user/show/'+user.id);
 			req.session.flash = {};
 		});
@@ -39,7 +41,6 @@ module.exports = {
 			res.view({
 				user:user
 			});
-			console.log(req);
 		});
 	},
 

@@ -11,8 +11,13 @@
 <div>
   <form action="/user/create" method="post">
     <input type="text" placeholder="your name" name="name"><br>
-    <input type="text" placeholder="your title" name="title"><br>
+    <input type="text" placeholder="user name" name="userName"><br>
     <input type="text" placeholder="your email" name="email"><br>
+    <select name="gender">
+      <option value="male">male</option>
+      <option value="female">female</option>
+     <option value="other">other</option>
+   </select><br>
     <input type="password" placeholder="your password" name="password"><br>
     <input type="password" placeholder="confirm password" name="confirm"><br>
     <input type="submit" value="register">

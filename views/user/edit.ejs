@@ -2,7 +2,7 @@
 <div>
   <form action="/user/update/<%=user.id%>" method="post">
     <input value="<%=user.name%>" type="text" placeholder="your name" name="name"><br>
-    <input value="<%=user.title%>" type="text" placeholder="your title" name="title"><br>
+    <input value="<%=user.userName%>" type="text" placeholder="your username" name="userName"><br>
     <input value="<%=user.email%>" type="text" placeholder="your email" name="email"><br>
     <input type="submit" value="proceed">
     <input type="hidden" name="_csrf" value="<%= _csrf %>">
