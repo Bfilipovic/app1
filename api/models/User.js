@@ -44,7 +44,7 @@ module.exports = {
       isAdmin: {
         type: 'boolean',
         defaultsTo: false
-      }
+      },
 
       encryptedPassword: {
         type:'string'
