@@ -1,0 +1,8 @@
+<form action='./make' method="post">
+ <input type="file" name="vid"> <br>
+ <input type="text" name="name"> <br>
+ <input type="hidden" name="_csrf" value="<%= _csrf %>">
+ <input type="hidden" name="ownerID" value="<%= req.session.User.id %>">
+ <input type="submit" value="add video">
+
+</form>

@@ -60,10 +60,11 @@ User.findOneByEmail(req.param('email'), function foundUser (err, user) {
 		}
 
 	// Log user in
+	console.log('sve ok');
 		req.session.authenticated = true;
 		req.session.User = user;
-
-
+console.log('i dalje ok');
+console.log(req.session.authenticated);
 		res.redirect('/user/show/' + user.id);
 	});
 });

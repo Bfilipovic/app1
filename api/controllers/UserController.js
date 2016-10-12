@@ -9,6 +9,7 @@ module.exports = {
 
 
 	'new': function(req,res){
+		console.log(req.session);
 		res.view();
 	},
 
@@ -45,6 +46,7 @@ module.exports = {
 	},
 
 	index: function(req,res,next){
+		console.log(req.session.User.id);
 		User.find(function foundUsers(err,users){
 			if(err) return next(err);
 
